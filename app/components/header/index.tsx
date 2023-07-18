@@ -2,7 +2,7 @@
 
 import styles from './style.module.scss'
 import { useState } from 'react';
-import Nav from "./nav/index"
+import Nav from "./nav/Nav"
 import { AnimatePresence } from "framer-motion"
 
 
