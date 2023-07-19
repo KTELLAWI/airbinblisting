@@ -9,7 +9,7 @@ import useSearchModal from '@/app/hooks/useSearchModal';
 import useCountries from '@/app/hooks/useCountries';
 
 const Search = () => {
-  const searchModal = useSearchModal();
+ const searchModal = useSearchModal();
   const params = useSearchParams();
   const { getByValue } = useCountries();
 
@@ -52,7 +52,7 @@ const Search = () => {
 
   return ( 
     <div
-      onClick={searchModal.onOpen}
+       onClick={searchModal.onOpen}
       className="
         border-[1px] 
         w-full 
@@ -81,6 +81,7 @@ const Search = () => {
           "
         >
           {locationLabel}
+          {/* {locationLabel} */}
         </div>
         <div 
           className="
@@ -94,6 +95,7 @@ const Search = () => {
             text-center
           "
         >
+        
           {durationLabel}
         </div>
         <div 
@@ -108,11 +110,13 @@ const Search = () => {
             gap-3
           "
         >
-          <div className="hidden sm:block">{guestLabel}</div>
+          <div className="hidden sm:block">
+            {guestLabel}
+          </div>
           <div 
             className="
               p-2 
-              bg-rose-500 
+              bg-blue-900 
               rounded-full 
               text-white
             "

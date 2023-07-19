@@ -51,7 +51,7 @@ const RentModal = () => {
     defaultValues: {
       category: '',
       location: null,
-      guestCount: 1,
+      guestCount: 13,
       roomCount: 1,
       bathroomCount: 1,
       imageSrc: '',
@@ -104,7 +104,8 @@ const RentModal = () => {
       setStep(STEPS.CATEGORY)
       rentModal.onClose();
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error?.message)
       toast.error('Something went wrong.');
     })
     .finally(() => {
@@ -170,6 +171,7 @@ const RentModal = () => {
           value={location} 
           onChange={(value) => setCustomValue('location', value)} 
         />
+        
         <Map center={location?.latlng} />
       </div>
     );
@@ -228,6 +230,9 @@ const RentModal = () => {
           title="How would you describe your place?"
           subtitle="Short and sweet works best!"
         />
+          {errors && (
+          <h1>{errors?.root?.message}</h1>
+        )}
         <Input
           id="title"
           label="Title"
@@ -245,6 +250,7 @@ const RentModal = () => {
           errors={errors}
           required
         />
+      
       </div>
     )
   }
@@ -274,7 +280,7 @@ const RentModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={rentModal.isOpen}
-      title="Airbnb your home!"
+      title="Digistacks Listings App!"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}

@@ -40,16 +40,15 @@ const RegisterModal= () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
-
+     setIsLoading(true);
     axios.post('/api/register', data)
     .then(() => {
       toast.success('Registered!');
-      registerModal.onClose();
+       registerModal.onClose();
       loginModal.onOpen();
     })
     .catch((error) => {
-      toast.error(error);
+      toast.error("error");
     })
     .finally(() => {
       setIsLoading(false);
@@ -58,7 +57,7 @@ const RegisterModal= () => {
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
-    loginModal.onOpen();
+    // loginModal.onOpen();
   }, [registerModal, loginModal])
 
   const bodyContent = (
@@ -104,12 +103,12 @@ const RegisterModal= () => {
         icon={FcGoogle}
         onClick={() => signIn('google')} 
       />
-      <Button 
+      {/* <Button 
         outline 
         label="Continue with Github"
         icon={AiFillGithub}
         onClick={() => signIn('github')}
-      />
+      /> */}
       <div 
         className="
           text-neutral-500 

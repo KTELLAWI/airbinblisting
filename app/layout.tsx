@@ -10,16 +10,19 @@ import ToasterProvider from '@/app/providers/ToasterProvider';
 
 import './globals.css'
 import ClientOnly from './components/ClientOnly';
+import Modal from './components/modals/Modal';
 import getCurrentUser from './actions/getCurrentUser';
+import Header from './components/header';
 
-export const metadata = {
-  title: 'Airbnb',
-  description: 'Airbnb Clone',
-}
 
 const font = Nunito({ 
   subsets: ['latin'], 
 });
+
+// export const metadata: Metadata = {
+//   title: 'ROOM RESERVATION',
+//   description: 'Find The Roome That Suitable with Your Needs',
+// }
 
 export default async function RootLayout({
   children,
@@ -27,19 +30,20 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser();
-
-  return (
+   return (
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
+        {/* <Header /> */}
           <ToasterProvider />
           <LoginModal />
-          <RegisterModal />
-          <SearchModal />
+           <RegisterModal /> 
+           <SearchModal />
           <RentModal />
-          <Navbar currentUser={currentUser} />
+          <Navbar currentUser={currentUser}  />
         </ClientOnly>
         <div className="pb-20 pt-28">
+       
           {children}
         </div>
       </body>

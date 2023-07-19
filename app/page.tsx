@@ -12,11 +12,13 @@ interface HomeProps {
   searchParams: IListingsParams
 };
 
+export const dynamic = 'force-dynamic';
+
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
-  if (listings.length === 0) {
+  if (listings.length ===0) {
     return (
       <ClientOnly>
         <EmptyState showReset />

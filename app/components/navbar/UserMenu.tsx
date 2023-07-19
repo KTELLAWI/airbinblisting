@@ -9,7 +9,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useRentModal from "@/app/hooks/useRentModal";
 import { SafeUser } from "@/app/types";
-
+import Header from "../../components/header/index";
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 
@@ -24,7 +24,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
-  const rentModal = useRentModal();
+   const rentModal = useRentModal();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,17 +32,17 @@ const UserMenu: React.FC<UserMenuProps> = ({
     setIsOpen((value) => !value);
   }, []);
 
-  const onRent = useCallback(() => {
+  const onRent  = useCallback(() => {
     if (!currentUser) {
       return loginModal.onOpen();
     }
 
-    rentModal.onOpen();
-  }, [loginModal, rentModal, currentUser]);
+     rentModal.onOpen();
+  }, [loginModal, currentUser]);
 
   return ( 
-    <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+    <div className="relative z-200">
+      <div className="flex flex-row items-center gap-3 z-200">
         <div 
           onClick={onRent}
           className="
@@ -58,7 +58,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             cursor-pointer
           "
         >
-          Airbnb your home
+          Add your List
         </div>
         <div 
         onClick={toggleOpen}
@@ -78,7 +78,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
           transition
           "
         >
+          <div className="hidden md:block z-20">
+          <Header currentUser={currentUser}/>
+          </div>
+          <div className='md:hidden'>
           <AiOutlineMenu />
+          </div>
+         
           <div className="hidden md:block">
             <Avatar src={currentUser?.image} />
           </div>
@@ -97,6 +103,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             right-0 
             top-12 
             text-sm
+            md:hidden
           "
         >
           <div className="flex flex-col cursor-pointer">
@@ -119,7 +126,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   onClick={() => router.push('/properties')}
                 />
                 <MenuItem 
-                  label="Airbnb your home" 
+                  label="Add your List" 
                   onClick={rentModal.onOpen}
                 />
                 <hr />
